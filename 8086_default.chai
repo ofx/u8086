@@ -1,0 +1,19 @@
+// Create emulator with 8086, 1MB RAM and load BIOS from file 'rom'
+var e
+
+try {
+	e = Emulator("8086", 1048576, "bios.bin")
+} catch (ex) {
+	print("Error while initializing emulator: ${ex}")
+}
+
+print_memory(e.Rom())
+print_memory(e.Ram())
+
+var continue = true
+
+while (continue)
+{
+	e.Step()
+	e.PrintRegisters()
+}

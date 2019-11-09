@@ -1,0 +1,5 @@
+build/*
+.vscode
+bios/bios.o
+bios/bios.bin
+bios.bin
