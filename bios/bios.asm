@@ -6,11 +6,22 @@ boot:
 	; 8086 instructions 00 - FF
 	; Used to test 8086 emulator instruction decodinge n
 
+	MOV  AH,    0
+	MOV  BH,    10
+
 	; 00 - ADD Eb Gb
 	ADD		AH,		BH
 
+	CMP   AH,   10
+	JZ		fail
+
+	MOV AX,     0
+	MOV BX,     10
+
 	; 01 - ADD Ev Gv
 	ADD		AX,		BX
+
+	CMP   AX,   10
 
 	; 02 - ADD Gb Eb
 	ADD		BH, 	[0xffff]
@@ -823,6 +834,9 @@ boot:
 	JMP 	 WORD [0xabcd]
 	JMP FAR  WORD [0xabcd]
 	PUSH 	 WORD [0xabcd]
+
+fail:
+	HLT
 
 	section .reset
 reset:
